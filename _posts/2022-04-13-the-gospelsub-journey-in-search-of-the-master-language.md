@@ -29,13 +29,13 @@ categories:
 C#은 이 프로그램을 개발하는 데 있어서 굉장히 도움이 된 언어였다. C#으로는 Windows에서 GUI 프로그램을 만드는 일이 쉬웠기 때문이다. 가장 간단하게는 WinForms, 조금 더 섬세한 애니메이션과 조정을 원한다면 WPF(Windows Presentation Foundation)이 있었다. 나는 이것들을 활용해서 프로그램을 만들기로 했다.
 
 처음에 구상한 찬양의 데이터 모델은 노래의 이름과 절 단위로 나눠진 가사들의 배열을 포함하는 것이었다.
-```C#
+{% highlight csharp %}
 class Gospel
 {
     public string Name { get; }
     public List<string> Lyrics { get; }
 }
-```
+{% endhighlight %}
 처음 생각으로는 노래 파일들을 읽어와서 리스트로 보여주고, 그 중에 몇 개를 선택한 다음, 순서를 지정하고, 화면으로 띄워주는 방식이었다.
 ```C#
 class Setting
