@@ -245,7 +245,7 @@ Elm을 보며 나는 신기했다. "어떻게 이렇게 간단한 함수들간�
 
 ## 순수할 것이냐 아니할 것이냐 그것이 문제로다
 나는 Elm 주변을 뒤지면 비슷한 언어가 나올 것이라 생각했다. 그러다 Elm이 [Haskell](https://www.haskell.org)이라는 언어로 만들어진 것을 알게 되었다. 나는 무작정 Haskell을 따라갔고, Haskell 역시 순수한 함수형 언어였다. 또한 Haskell은 범용 프로그래밍 언어였으므로, 내 기준에 아주 적합했다. 그러나 나는 곧 문제에 직면했는데, 그것은 바로 Haskell이 어렵다는 점이었다. 나는 나름 많은 언어들을 배우고, 봐오고, 그 중의 몇몇은 쓰던 사람으로서 C, C++, C#, Visual Basic, Python, Java, Kotlin, Javascript, Typescript 등 시중에서 많이 쓰는 언어는 거의 안다고 자부하는 사람이었고 많은 언어들을 보아 와서 처음 보는 언어도 대충 문법 보고 파악해서 바로 쓸 수 있는 수준이 되었다고 생각했다. 그런데 (나름 Elm에서 적응되기는 했지만) Haskell의 문법은 난생 처음 보는 문법이었다. 예를 들어 퀵소트는 이렇게 구현한다:
-w{% highlight haskell %}
+{% highlight haskell %}
 quicksort :: Ord a => [a] -> [a]
 quicksort []     = []
 quicksort (x:xs) = (quicksort lesser) ++ [x] ++ (quicksort greater)
@@ -254,13 +254,13 @@ quicksort (x:xs) = (quicksort lesser) ++ [x] ++ (quicksort greater)
         greater = [z | z <- xs, z >= x]
 {% endhighlight %}
 간단하다는 건 알 수 있었지만 나에게 써 보라고 한다면 쉽게 쓰기 어려운 코드였다. 연산자가 많아서 좋긴 하지만, 다시 말하면 연산자를 이해하지 못하면 이상한 외계어가 될 뿐이었다. 또다른 예로 구구단을 출력하는 예제를 보면:
-```Haskell
+{% highlight haskell %}
 main :: IO ()
 main = mapM_ putStrLn $ stringify <$> [2..9] <*> [1..9]
     where 
         stringify :: Int -> Int -> String
         stringify x y = show x ++ " * " ++ show y ++ " = " ++ show (x * y)
-```
+{% endhighlight %}
 Haskell에서 말하는 Functor, Applicative, Monad를 알지 못하면 이 코드를 이해할 수 없었다. Haskell은 [람다 대수](https://en.wikipedia.org/wiki/Lambda_calculus)와 [범주론](https://en.wikipedia.org/wiki/Category_theory)을 기반으로 하여졌고 수학에서 아이디어를 더 많이 끌어 쓰기 때문에, 수학에서 가져온 아이디어인 Semigroup, Monoid, Functor, Applicative, Monad, Comonad, Bifunctor, Profunctor, Arrow, Lense 등등 괴상하고 무서워 보이는 용어들과 개념들이 넘쳐났다. (나중에 이것들은 단지 수학에서 단어와 아이디어만 그대로 가져온 것일 뿐 수학에서 말하는 개념을 이해하지 않아도 된다는 것을 알았지만, 그것은 나중의 일이었다.)
 
 나는 이 때문에 또다시 고민에 빠졌다. '아, 정녕 "순수함"을 어디서나 쓰려면 이런 개념들을 다 알아야 한단 말인가?' '프로그래밍이 원래 이렇게 어려운 일이었나?' '오류가 없고 간결한 건 좋지만 그걸 위해서 너무 많이 희생하는 건 아닌가?' 등 여러 생각들이 나를 쪼아댔다. 그래서 나는 Haskell과 Elm 사이에 있을만한, Elm보다는 범용적이면서 Haskell보다는 간단한 언어를 찾아 나섰다. 구체적으로 설정한 조건들은 다음과 같다:
@@ -290,7 +290,7 @@ ReasonML < F# < Elm < ClojureScript < PureScript < Haskell
 
 ## 더 문제를 잘 해결할 자유
 나는 PureScript를 배우는 데에 꽤나 시간이 걸렸고, 마침내 이것으로 gospelsub을 [다시 만들었다.](https://github.com/DavidLee18/gospelsub-pure) 나는 PureScript로 프로그램을 작성하면서 놀라움을 금할 수 없었다. 그와 동시에 C#으로 작성했을 때는 왜 그렇게 오류가 많았는지 깨달았다. 이유는 간단했다, C#은 찬양이라는 데이터를 이렇게 말할 능력이 없었기 때문이다:
-```Purescript
+{% highlight haskell %}
 data Gospel
     = Gospel { name :: String, lyrics :: Array Verse }
     | Hymn { index :: Int, name :: String, lyrics :: Array Verse }
@@ -298,7 +298,7 @@ data Gospel
 data Verse
     = Verse String
     | TaggedVerse Key String
-```
+{% endhighlight %}
 PureScript는 Tag 자체를 데이터 안에 내장하고 그 경우의 수를 설계할 수 있게 해 주었다. 데이터는 살아 요동하고 변화하는 `Object`가 아니라, 죽어있고 절대 변하지 않는 값인 상태가 더 나았다.
 
 또한, gospelsub 프로그램에서 찬양을 표시할 때, 현재 표시되는 화면은 어는 찬양의 어느 부분인지 기억하는 것이 필요했고, 이것을 나는 C# 에서는 `Current`와 `Index`로 구현하고, 표시되는 내용은 `Text` 프로퍼티로 구현했었다:
