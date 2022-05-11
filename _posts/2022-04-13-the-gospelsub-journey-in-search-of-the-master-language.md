@@ -245,14 +245,14 @@ Elm을 보며 나는 신기했다. "어떻게 이렇게 간단한 함수들간�
 
 ## 순수할 것이냐 아니할 것이냐 그것이 문제로다
 나는 Elm 주변을 뒤지면 비슷한 언어가 나올 것이라 생각했다. 그러다 Elm이 [Haskell](https://www.haskell.org)이라는 언어로 만들어진 것을 알게 되었다. 나는 무작정 Haskell을 따라갔고, Haskell 역시 순수한 함수형 언어였다. 또한 Haskell은 범용 프로그래밍 언어였으므로, 내 기준에 아주 적합했다. 그러나 나는 곧 문제에 직면했는데, 그것은 바로 Haskell이 어렵다는 점이었다. 나는 나름 많은 언어들을 배우고, 봐오고, 그 중의 몇몇은 쓰던 사람으로서 C, C++, C#, Visual Basic, Python, Java, Kotlin, Javascript, Typescript 등 시중에서 많이 쓰는 언어는 거의 안다고 자부하는 사람이었고 많은 언어들을 보아 와서 처음 보는 언어도 대충 문법 보고 파악해서 바로 쓸 수 있는 수준이 되었다고 생각했다. 그런데 (나름 Elm에서 적응되기는 했지만) Haskell의 문법은 난생 처음 보는 문법이었다. 예를 들어 퀵소트는 이렇게 구현한다:
-```Haskell
+w{% highlight haskell %}
 quicksort :: Ord a => [a] -> [a]
 quicksort []     = []
 quicksort (x:xs) = (quicksort lesser) ++ [x] ++ (quicksort greater)
     where
         lesser  = [y | y <- xs, y < x]
         greater = [z | z <- xs, z >= x]
-```
+{% endhighlight %}
 간단하다는 건 알 수 있었지만 나에게 써 보라고 한다면 쉽게 쓰기 어려운 코드였다. 연산자가 많아서 좋긴 하지만, 다시 말하면 연산자를 이해하지 못하면 이상한 외계어가 될 뿐이었다. 또다른 예로 구구단을 출력하는 예제를 보면:
 ```Haskell
 main :: IO ()
