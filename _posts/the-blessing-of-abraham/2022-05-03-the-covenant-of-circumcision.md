@@ -7,7 +7,8 @@ categories:
 
 > And God said to Abraham: “As for you, you shall keep My covenant, you and your descendants after you throughout their generations. This is My covenant which you shall keep, between Me and you and your descendants after you: Every male child among you shall be circumcised; and you shall be circumcised in the flesh of your foreskins, and it shall be a sign of the covenant between Me and you. He who is eight days old among you shall be circumcised, every male child in your generations, he who is born in your house or bought with money from any foreigner who is not your descendant. He who is born in your house and he who is bought with your money must be circumcised, and My covenant shall be in your flesh for an everlasting covenant. And the uncircumcised male child, who is not circumcised in the flesh of his foreskin, that person shall be cut off from his people; he has broken My covenant.” (Gen 17:9-14)
 
-<hr><br>
+---
+<br>
 
 Our God promised Abraham saying, “I will give you the land of Canaan, and your descendants will be as numerous as the stars in the sky and as the sand on the seashore. And I will be their God”. And over the last two days, we had a close look at what the promise meant. It means that God will be with them and be their King; thus, save them. In other words, it is Immanuel – God with us. That is what He promised Abraham. I will be with you. However, it is not just that God wants to be with them. He asks, “Is this what you want too?” “Yes I do”. “Then let us make a covenant”. How was the covenant established? God commanded them to be circumcised.
 
@@ -29,7 +30,7 @@ God our Father, help us to always acknowledge that You are with us because You h
 <div style="text-align: right">Pastor Ki-Taek Lee<br>
 The Director of Sungrak Mission Center</div>
 
-<audio>
-	<source type="audio/mp3" src="https://www.sungrakberea.org/wp-content/uploads/2022/04/The-Blessing-of-Abraham-18-The-Covenant-of-Circumcision.mp3"></source>
+<audio controls>
+	<source type="audio/mp3" src="/assets/The-Blessing-of-Abraham-18-The-Covenant-of-Circumcision.mp3"></source>
 	<p>audio not supported</p>
 </audio>
