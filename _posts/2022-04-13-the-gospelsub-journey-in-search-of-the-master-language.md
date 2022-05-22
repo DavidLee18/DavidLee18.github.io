@@ -37,13 +37,13 @@ class Gospel
 }
 {% endhighlight %}
 처음 생각으로는 노래 파일들을 읽어와서 리스트로 보여주고, 그 중에 몇 개를 선택한 다음, 순서를 지정하고, 화면으로 띄워주는 방식이었다.
-```C#
+{% highlight csharp %}
 class Setting
 {
     public List<Gospel> Gospels { get; set; } = new List<Gospel>();
     public List<Gospel> Sequence { get; set; } = new List<Gospel>();
 }
-```
+{% endhighlight %}
 이런 기본적인 토대가 잡히자, 가능성은 무궁무진해졌다. 보통은 하얀 화면에 검은 글씨로 보이던 것을 검은 화면에 하얀 글씨로 보이게 하면 어두운 곳에서 상대적으로 더 잘 볼 수 있었다. 이것은 색깔만 바꿔주면 되기에 GospelSub에서 적용하기에 매우 간단했다. 화면에 보이는 글씨체를 설정하는 것도 간단했고, 글씨의 크기를 조절하는 것도 프리젠테이션 도중에 얼마든지 가능했다. 배경은 보통 단색으로 설정하지만, 원한다면 이미지를 불러와서 배경으로 설정하는 것도 식은죽 먹기였다. 내가 꿈꾼 그대로 이룬 것에 아주 기분이 좋았고 새로운 가능성을 열은 기분이었다.
 
 ## GospelSub 3.0까지
@@ -159,15 +159,15 @@ We will sing sing sing
 유일하신 삶의 이유
 ```
 위와 같이 바꾸는 것이 태그 적용이다. 이렇게 함으로써 노래의 재활용성을 훨씬 높였다. 노래에 절이 표시되어 있는 경우는 자동으로 단축키가 등록되도록 했다. 이렇게 하기 위해서 `Gospel`에 태그의 단축키와 그 단축키를 누르면 이동하는 위치를 기록하는 데이터를 추가했다.
-```C#
+{% highlight csharp %}
 class Gospel
 {
     // ....
     public Dictionary<Key, int> Tags { get; } = new Dictionary<Key, int>();
 }
-```
+{% endhighlight %}
 그리고 태그는 명시적인 경우와 암시적인 경우의 두 가지 타입이 있었다. 이것을 구분하는 함수, 즉 절마다 태그가 있는지, 있으면 어떤 타입의 태그인지 확인하는 함수와 노래에서 태그를 인식해서 `Tags`에 등록하는 작업도 필요했다.
-```C#
+{% highlight csharp %}
 class Gospel
 {
     // ....
@@ -194,7 +194,7 @@ class Gospel
         }
     }
 }
-```
+{% endhighlight %}
 이 태그들을 그때그때 등록해서 단축키를 누를 때마다 그 위치로 가게 하면 되었다. 혼란을 피하기 위해 단축키는 한 자리인 숫자와 알파벳 한 글자로 제한했다.
 
 ## 가능성과 함께 오는 그림자들
@@ -215,9 +215,9 @@ class Gospel
 다시말해 **간결하게 작업을 표현하고, 그래서 이해력을 높이며 타자 수도 줄이는** 언어가 좋다라고 생각하게 되었다. C++과 C#같은 경우는 [연산자 오버로딩](https://en.wikipedia.org/wiki/Operator_overloading)으로 이것을 가능하게 했다.
 
 한편 나는 이 프로그램을 처음에 WinForms로 만들다가 WPF(Windows Presentation Foundation)으로 옮겨가서 만들었는데, 써 보니 WinForms보다 WPF에 열광하게 되었다. 대표적인 이유는 역시 간결함이었다. 예를 들어, UI에서 어떤 부분이 변경되면 그 부분을 수동으로 업데이트해 주어야 했는데, 이는 코드 3~5줄은 항상 차지했다. 그런데 WPF에서는
-```XAML
+{% highlight xml %}
 <TextBlock Text="{Binding Source={StaticResource myDataSource}, Path=Name}"/>
-```
+{% endhighlight %}
 와 같이 간단하게 표현할 수 있었다. 이것은 [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)이라고 불리는 방식이었는데 기존에 비해서 아주 간단하게 두 값을 연결해서 표현함으로써 변경시 반영하는 작업을 원활하게 만들어주었다.
 
 또, 나는 그 이후에는 웹을 다루게 되었다. 주로 웹사이트 클라이언트를 다루는 작업이었는데, [AngularDart](https://angulardart.xyz/)를 찾아서 그것으로 시작했다. 그 후에는 [Angular](https://angular.io)로 넘어갔지만, 기본 아이디어는 같았다. 여기서는 [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)를 배웠고 이 방식에 익숙해지게 되었다. 확실히 MVC는 기능을 분리하고 각 가능에 집중함으로써 코드 오류를 막고 이해하기 좀더 쉽게 했다.
@@ -302,7 +302,7 @@ data Verse
 PureScript는 Tag 자체를 데이터 안에 내장하고 그 경우의 수를 설계할 수 있게 해 주었다. 데이터는 살아 요동하고 변화하는 `Object`가 아니라, 죽어있고 절대 변하지 않는 값인 상태가 더 나았다.
 
 또한, gospelsub 프로그램에서 찬양을 표시할 때, 현재 표시되는 화면은 어는 찬양의 어느 부분인지 기억하는 것이 필요했고, 이것을 나는 C# 에서는 `Current`와 `Index`로 구현하고, 표시되는 내용은 `Text` 프로퍼티로 구현했었다:
-```C#
+{% highlight csharp %}
 public partial class DisplayWindow : Window
     {
         private Gospel gospel;
@@ -385,9 +385,9 @@ public partial class DisplayWindow : Window
             }
         }
     }
-```
+{% endhighlight %}
 PureScript로는 이것을 합쳐서 `position`으로 추상화하고 구현하면 되었다. 그냥 코드의 양이 줄은 것만 감상해도 된다:
-```Purescript
+{% highlight haskell %}
 type State =
     { blind :: Boolean
     , gospels :: Array Gospel
@@ -404,5 +404,5 @@ render { blind, position, route: Display, textSize } = HH.div_ [
         HH.h2 [ style $ "font-size: " <> show textSize <> "px;" ] if blind then [] else fromMaybe [ HH.text "Loading Gospels..." ] titleOrVerse
         ]
     where titleOrVerse = Array.intersperse HH.br_ <<< map HH.text <<< String.split (Pattern "\\n") <<< either identity Verse.string <<< extract <$> position
-```
+{% endhighlight %}
 PureScript에는 이렇게 말할 능력이 있었고 따라서 코드는 더 간결하면서 동시에 더 견고해졌다. C#에서는 이렇게 말할 능력이 없어서 그렇게 장황하게 말했던 것이다.
